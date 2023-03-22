@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PTH.domain.models
+﻿namespace PTH.domain.models
 {
     public class Room
     {
@@ -21,6 +15,7 @@ namespace PTH.domain.models
         public decimal? baseCost { get; set; }
         public decimal taxes { get; set; }
         public bool active { get; set; }
+        public bool occupied { get; set; }
         public RoomType? roomType { get; set; }
         public Hotel? hotel { get; set; }
     }
