@@ -204,11 +204,57 @@ namespace PTH.aplications.Services
             }
             return Task.FromResult(response);
         }
-
-        public Task<ResponseDto<bool>> UpdateReservation(long idReservation, ReservationUpdateDTO updateReservationDto)
+        public Task<ResponseDto<bool>> UpdateReservationState(bool isActive, long idReservation)
         {
-            throw new NotImplementedException();
+            ResponseDto<bool> response = new ResponseDto<bool>();
+
+            try
+            {
+                bool isUpdate = reservationRepository.UpdateReservationState(isActive, idReservation).Result;
+                if (isUpdate) response.result = true;
+            }
+            catch (Exception ex)
+            {
+                response.message = "There are unhandled errors trying to solve UpdateReservationState in reservationService";
+                response.error = ex.Message;
+                response.existError = true;
+                response.results = null;
+            }
+            return Task.FromResult(response);
         }
+
+        public Task<ResponseDto<bool>> UpdateReservation(IEnumerable<ReservationUpdateInfoDTO> updateReservationDto)
+        {
+            ResponseDto<bool> response = new ResponseDto<bool>();
+
+            try
+            {
+                response.message = "";
+                foreach (var item in updateReservationDto)
+                {
+                    if (reservationRepository.validateReservation(item.idReservation).Result)
+                    {
+                        bool isUpdate = reservationRepository.UpdateReservation(item).Result;
+                        if (isUpdate) response.result = true;
+                    }
+                    else
+                    {
+                        response.message = response.message + " |-the reservation with id: " + item.id + " is no active-| ";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                response.message = "There are unhandled errors trying to solve UpdateReservation in reservationService";
+                response.error = ex.Message;
+                response.existError = true;
+                response.results = null;
+            }
+            return Task.FromResult(response);
+        }
+
+
+
         private bool checkUser(long idUser)
         {
             bool checkUser = reservationRepository.validateUser(idUser).Result;
@@ -236,6 +282,5 @@ namespace PTH.aplications.Services
             }
             return true;
         }
-
     }
 }

@@ -43,24 +43,24 @@ namespace PTH.services.DTO_s
         public string? lastNamesEContact { get; set; }
         public string? phoneEContact { get; set; }
     }
-    public class ReservationUpdateDTO
+    public class ReservationUpdateInfoDTO
     {
-        public long IdUser { get; set; }
-        public long IdGender { get; set; }
-        public long IdTypeDocument { get; set; }
-        public bool Active { get; set; }
-        public string? Names { get; set; }
-        public string? LastNames { get; set; }
-        public string? Phone { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string? Document { get; set; }
-        public string? Email { get; set; }
-        public string? NamesEContact { get; set; }
-        public string? LastNamesEContact { get; set; }
-        public string? PhoneEContact { get; set; }
-        public DateTime InDate { get; set; }
-        public DateTime OutDate { get; set; }
-        public decimal? Amount { get; set; }
+        public long id { get; set; }
+        public bool toUpdate { get; set; }
+        public long idReservation { get; set; }
+        public string? names { get; set; }
+        public string? lastNames { get; set; }
+        public long idGender { get; set; }
+        public long idTypeDocument { get; set; }
+        public string? identification { get; set; }
+        public string? phone { get; set; }
+        public DateTime birthDate { get; set; }
+        public string? document { get; set; }
+        public string? email { get; set; }
+        public string? namesEContact { get; set; }
+        public string? lastNamesEContact { get; set; }
+        public string? phoneEContact { get; set; }
     }
+
 
 }

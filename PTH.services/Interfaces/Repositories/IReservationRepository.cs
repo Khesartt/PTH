@@ -12,12 +12,12 @@ namespace PTH.services.Interfaces.Repositories
         Task<ResponseDto<ReservationDTO>> GetAllReservations();
         Task<ResponseDto<ReservationDTO>> GetAllReservationsByHotel(long idHotel);
         Task<ResponseDto<ReservationDTO>> GetAllReservationsByUser(long idUser);
-        Task<ResponseDto<bool>> UpdateReservation(long idReservation, Reservation updateReservationDto);
+        Task<bool> UpdateReservation(ReservationUpdateInfoDTO updateReservationDto);
+        Task<bool> UpdateReservationState(bool isActive, long idReservation);
         Task<bool> DeleteReservation(long idReservation);
         Task<bool> validateUser(long idUser);
         Task<bool> validateRoom(long idRoom);
         Task<bool> validateAmount(long amount);
-
-
+        Task<bool> validateReservation(long idReservation);
     }
 }
