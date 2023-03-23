@@ -29,8 +29,8 @@ namespace PTH.services.DTO_s
         public long idCity { get; set; }
         public string? address { get; set; }
         public string? services { get; set; }
-        public TimeSpan? checkIn { get; set; }
-        public TimeSpan? checkOut { get; set; }
-        public bool? active { get; set; }
+        public TimeSpan checkIn { get; set; }
+        public TimeSpan checkOut { get; set; }
+        public bool active { get; set; }
     }
 }

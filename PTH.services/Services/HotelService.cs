@@ -50,8 +50,8 @@ namespace PTH.services.Services
                 Hotel hotelToCreate = new Hotel();
                 hotelToCreate.name = createHotelDto.name;
                 hotelToCreate.idUser = createHotelDto.idUser;
-                hotelToCreate.descripcion = createHotelDto.description;
-                hotelToCreate.descripcion = createHotelDto.description;
+                hotelToCreate.description = createHotelDto.description;
+                hotelToCreate.description = createHotelDto.description;
                 hotelToCreate.image = createHotelDto.image;
                 hotelToCreate.idCity = createHotelDto.idCity;
                 hotelToCreate.address = createHotelDto.address;
@@ -164,13 +164,13 @@ namespace PTH.services.Services
             return Task.FromResult(response);
         }
 
-        public Task<ResponseDto<bool>> UpdateHotelState(bool isActive)
+        public Task<ResponseDto<bool>> UpdateHotelState(bool isActive, long idHotel)
         {
             ResponseDto<bool> response = new ResponseDto<bool>();
 
             try
             {
-                response = hotelRepository.UpdateHotelState(isActive).Result;
+                response = hotelRepository.UpdateHotelState(isActive, idHotel).Result;
             }
             catch (Exception ex)
             {

@@ -1,5 +1,4 @@
-﻿using PTH.domain.modelsDomain;
-
+﻿
 namespace PTH.domain.models
 {
     public class Hotel
@@ -10,11 +9,12 @@ namespace PTH.domain.models
             active = true;
         }
         public long id { get; set; }
-        public string? name { get; set; }
         public long idUser { get; set; }
-        public string? descripcion { get; set; }
-        public string? image { get; set; }
         public long idCity { get; set; }
+
+        public string? name { get; set; }
+        public string? description { get; set; }
+        public string? image { get; set; }
         public string? address { get; set; }
         public string? services { get; set; }
         public TimeSpan checkIn { get; set; }
