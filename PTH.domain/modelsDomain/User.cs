@@ -17,7 +17,6 @@ namespace PTH.domain.models
         public DateTime creationDate { get; set; }
         public Guid token { get; set; }
         public DateTime tokenDate { get; set; }
-        public Role? role { get; set; }
 
     }
 }

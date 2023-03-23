@@ -10,7 +10,7 @@ namespace PTH.services.Interfaces
     {
         Task<ResponseDto<UserDTO>> GetUserById(long idUser);
         Task<ResponseDto<bool>> CreateUser(UserCreateDTO userCreateDTO);
-        Task<ResponseDto<bool>> UpdateUser(long id, UserUpdateDTO userUpdateDTO);
+        Task<ResponseDto<bool>> UpdateUser(UserUpdateDTO userUpdateDTO);
         Task<ResponseDto<bool>> DeleteRoom(long idUser);
 
     }

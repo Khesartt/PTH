@@ -2,11 +2,18 @@
 {
     public class Room
     {
+        public Room()
+        {
+            active = true;
+            occupied = false;
+            creationDate = DateTime.Now;
+            baseCost = 0.00m;
+            taxes = 0.00m;
+        }
         public long id { get; set; }
         public string? name { get; set; }
         public string? descripcion { get; set; }
         public DateTime creationDate { get; set; }
-        public DateTime updateDate { get; set; }
         public string? image { get; set; }
         public string? location { get; set; }
         public long idRoomType { get; set; }
@@ -16,7 +23,5 @@
         public decimal taxes { get; set; }
         public bool active { get; set; }
         public bool occupied { get; set; }
-        public RoomType? roomType { get; set; }
-        public Hotel? hotel { get; set; }
     }
 }

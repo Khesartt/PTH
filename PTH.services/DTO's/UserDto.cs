@@ -27,6 +27,7 @@ namespace PTH.services.DTO_s
 
     public class UserUpdateDTO
     {
+        public long id { get; set; }
         public string? UserLogin { get; set; }
         public string? Password { get; set; }
         public string? Email { get; set; }
