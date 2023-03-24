@@ -17,7 +17,7 @@ namespace PTH.services.Interfaces.Repositories
         Task<bool> DeleteReservation(long idReservation);
         Task<bool> validateUser(long idUser);
         Task<bool> validateRoom(long idRoom);
-        Task<bool> validateAmount(long amount);
+        Task<bool> validateAmount(long amount, long idRoom);
         Task<bool> validateReservation(long idReservation);
     }
 }

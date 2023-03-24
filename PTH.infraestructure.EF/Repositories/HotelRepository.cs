@@ -1,4 +1,5 @@
 ﻿using PTH.domain.models;
+using PTH.domain.modelsDomain;
 using PTH.infraestructure.EF.Context;
 using PTH.services.DTO_s;
 using PTH.services.Interfaces.Repositories;
@@ -26,7 +27,7 @@ namespace PTH.infraestructure.EF.Repositories
         public Task<ResponseDto<bool>> DeleteHotel(long id)
         {
             ResponseDto<bool> response = new ResponseDto<bool>();
-            Hotel hotelToDelete = dbContext.hotels.Where(x => x.id == id).FirstOrDefault();
+            Hotel? hotelToDelete = dbContext.hotels.Where(x => x.id == id).FirstOrDefault();
             if (hotelToDelete != null)
             {
                 dbContext.Remove(hotelToDelete);
@@ -70,7 +71,7 @@ namespace PTH.infraestructure.EF.Repositories
         public Task<ResponseDto<bool>> UpdateHotel(HotelUpdateDTO hotel)
         {
             ResponseDto<bool> response = new ResponseDto<bool>();
-            Hotel hotelToUpdate = dbContext.hotels.Where(x => x.id == hotel.id).FirstOrDefault();
+            Hotel? hotelToUpdate = dbContext.hotels.Where(x => x.id == hotel.id).FirstOrDefault();
             if (hotelToUpdate != null)
             {
                 hotelToUpdate.name = (string.IsNullOrEmpty(hotel.name) ? hotelToUpdate.name : hotel.name);
@@ -106,7 +107,20 @@ namespace PTH.infraestructure.EF.Repositories
         {
             ResponseDto<bool> response = new ResponseDto<bool>();
 
-            Hotel hotelToUpdate = dbContext.hotels.Where(x => x.id == idHotel).FirstOrDefault();
+            Hotel? hotelToUpdate = dbContext.hotels.Where(x => x.id == idHotel).FirstOrDefault();
+            if (hotelToUpdate != null)
+            {
+                hotelToUpdate.active = isActive;
+                dbContext.Entry(hotelToUpdate).Property(p => p.active).IsModified = true;
+                dbContext.SaveChanges();
+            }
+            else
+            {
+                response.result = false;
+                response.message = "there is not exist one hotel with that id.";
+                response.existError = true;
+
+            }
 
             return Task.FromResult(response);
 
@@ -114,12 +128,22 @@ namespace PTH.infraestructure.EF.Repositories
 
         public Task<bool> validateCity(long idCity)
         {
-            throw new NotImplementedException();
+            City? city = dbContext.cities.Where(x => x.id == idCity).FirstOrDefault();
+            if (city != null)
+            {
+                return Task.FromResult(true);
+            }
+            return Task.FromResult(false);
         }
 
         public Task<bool> validateUser(long idUser)
         {
-            throw new NotImplementedException();
+            User? user = dbContext.users.Where(x => x.id == idUser).FirstOrDefault();
+            if (user != null)
+            {
+                return Task.FromResult(true);
+            }
+            return Task.FromResult(false);
         }
     }
 }

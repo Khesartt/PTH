@@ -34,7 +34,7 @@ namespace PTH.aplications.Services
                     response.result = false;
                     return Task.FromResult(response);
                 }
-                if (!checkAmount(createReservationDto.amount))
+                if (!checkAmount(createReservationDto.amount,createReservationDto.idRoom))
                 {
                     response.message = "The number of people is greater than those allowed for the room";
                     response.existError = true;
@@ -90,7 +90,6 @@ namespace PTH.aplications.Services
                     reservationInfo.identification = reservationInfoDto.identification;
                     reservationInfo.phone = reservationInfoDto.phone;
                     reservationInfo.birthDate = reservationInfoDto.birthDate;
-                    reservationInfo.document = reservationInfoDto.document;
                     reservationInfo.email = reservationInfoDto.email;
                     reservationInfo.namesEContact = reservationInfoDto.namesEContact;
                     reservationInfo.lastNamesEContact = reservationInfoDto.lastNamesEContact;
@@ -273,7 +272,7 @@ namespace PTH.aplications.Services
             }
             return true;
         }
-        private bool checkAmount(int amount)
+        private bool checkAmount(int amount,long idRoom)
         {
             bool checkUser = reservationRepository.validateAmount(amount).Result;
             if (!checkUser)
