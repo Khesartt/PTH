@@ -160,7 +160,27 @@ namespace PTH.infraestructure.EF.Repositories
 
         public Task<bool> UpdateReservation(ReservationUpdateInfoDTO updateReservationDto)
         {
-            throw new NotImplementedException();
+            ReservationInfo? reservationInfo = dbContext.reservationsInfo.Where(x => x.id == updateReservationDto.id).FirstOrDefault();
+            if (reservationInfo != null && updateReservationDto.toUpdate == true)
+            {
+                reservationInfo.id = reservationInfo.id;
+                reservationInfo.idReservation = reservationInfo.idReservation;
+                reservationInfo.names = string.IsNullOrEmpty(updateReservationDto.names) ? reservationInfo.names : updateReservationDto.names;
+                reservationInfo.lastNames = string.IsNullOrEmpty(updateReservationDto.lastNames) ? reservationInfo.lastNames : updateReservationDto.lastNames;
+                reservationInfo.idGender = updateReservationDto.idGender == -1 ? reservationInfo.idGender : updateReservationDto.idGender;
+                reservationInfo.idTypeDocument = updateReservationDto.idTypeDocument == -1 ? reservationInfo.idTypeDocument : updateReservationDto.idTypeDocument;
+                reservationInfo.identification = string.IsNullOrEmpty(updateReservationDto.identification) ? reservationInfo.identification : updateReservationDto.identification;
+                reservationInfo.phone = string.IsNullOrEmpty(updateReservationDto.phone) ? reservationInfo.phone : updateReservationDto.phone;
+                reservationInfo.birthDate = DateTime.Compare(updateReservationDto.birthDate.Date, new DateTime(2001, 01, 01)) <= 0 ? reservationInfo.birthDate : updateReservationDto.birthDate;
+                reservationInfo.email = string.IsNullOrEmpty(updateReservationDto.email) ? reservationInfo.email : updateReservationDto.email;
+                reservationInfo.namesEContact = string.IsNullOrEmpty(updateReservationDto.namesEContact) ? reservationInfo.namesEContact : updateReservationDto.namesEContact;
+                reservationInfo.lastNamesEContact = string.IsNullOrEmpty(updateReservationDto.lastNamesEContact) ? reservationInfo.lastNamesEContact : updateReservationDto.lastNamesEContact;
+                reservationInfo.phoneEContact = string.IsNullOrEmpty(updateReservationDto.phoneEContact) ? reservationInfo.phoneEContact : updateReservationDto.phoneEContact;
+                dbContext.Update(reservationInfo);
+                dbContext.SaveChanges();
+                return Task.FromResult(true);
+            }
+            return Task.FromResult(false);
         }
 
         public Task<bool> UpdateReservationState(bool isActive, long idReservation)
@@ -179,7 +199,6 @@ namespace PTH.infraestructure.EF.Repositories
             else
             {
                 check = false;
-
             }
 
             return Task.FromResult(check);
@@ -204,12 +223,14 @@ namespace PTH.infraestructure.EF.Repositories
 
         public Task<bool> validateRoom(long idRoom)
         {
-            throw new NotImplementedException();
+            bool isActive = dbContext.rooms.Where(x => x.id == idRoom).Select(x => x.occupied).FirstOrDefault();
+            return Task.FromResult(isActive);
         }
 
         public Task<bool> validateUser(long idUser)
         {
-            throw new NotImplementedException();
+            bool isActive = dbContext.users.Where(x => x.id == idUser).Select(x => x.activo).FirstOrDefault();
+            return Task.FromResult(isActive);
         }
     }
 }

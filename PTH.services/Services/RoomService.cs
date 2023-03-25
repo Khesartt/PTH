@@ -116,17 +116,12 @@ namespace PTH.aplications.Services
             return Task.FromResult(response);
         }
 
-        public Task<ResponseDto<AvailableRoom>> searchAvailableRooms(DateTime startDate, DateTime endDate, int quota, long idCity)
+        public Task<ResponseDto<AvailableRoom>> searchAvailableRooms(int quota, long idCity)
         {
             ResponseDto<AvailableRoom> response = new ResponseDto<AvailableRoom>();
             try
             {
-                if (DateTime.Compare(startDate, endDate) > 0)
-                {
-                    response.message = "The start date must be less than the end date";
-                    return Task.FromResult(response);
-                }
-                response = roomRepository.searchAvailableRooms(startDate, endDate, quota, idCity).Result;
+                response = roomRepository.searchAvailableRooms(quota, idCity).Result;
             }
             catch (Exception ex)
             {
@@ -156,13 +151,13 @@ namespace PTH.aplications.Services
             return Task.FromResult(response);
         }
 
-        public Task<ResponseDto<bool>> UpdateRoomState(bool isActive)
+        public Task<ResponseDto<bool>> UpdateRoomState(bool isActive, long idRoom)
         {
             ResponseDto<bool> response = new ResponseDto<bool>();
 
             try
             {
-                response = roomRepository.UpdateRoomState(isActive).Result;
+                response = roomRepository.UpdateRoomState(isActive, idRoom).Result;
             }
             catch (Exception ex)
             {
@@ -175,8 +170,8 @@ namespace PTH.aplications.Services
         }
         private bool checkHotel(long idHotel)
         {
-            bool checkUser = roomRepository.validateHotel(idHotel).Result;
-            if (!checkUser)
+            bool checkHotel = roomRepository.validateHotel(idHotel).Result;
+            if (!checkHotel)
             {
                 return false;
             }

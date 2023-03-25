@@ -10,8 +10,8 @@ namespace PTH.services.Interfaces.Repositories
         Task<ResponseDto<Room>> GetAllRooms();
         Task<ResponseDto<bool>> UpdateRoom(RoomUpdateDTO room);
         Task<ResponseDto<bool>> DeleteRoom(long id);
-        Task<ResponseDto<bool>> UpdateRoomState(bool isActive);
-        Task<ResponseDto<AvailableRoom>> searchAvailableRooms(DateTime startDate, DateTime endDate, int quota, long idCity);
+        Task<ResponseDto<bool>> UpdateRoomState(bool isActive, long idRoom);
+        Task<ResponseDto<AvailableRoom>> searchAvailableRooms(int quota, long idCity);
         Task<bool> validateHotel(long idHotel);
 
     }

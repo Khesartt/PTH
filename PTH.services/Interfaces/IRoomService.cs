@@ -9,8 +9,8 @@ namespace PTH.services.Interfaces
         Task<ResponseDto<Room>> GetAllRooms();
         Task<ResponseDto<bool>> UpdateRoom(RoomUpdateDTO updateRoomDto);
         Task<ResponseDto<bool>> DeleteRoom(long id);
-        Task<ResponseDto<bool>> UpdateRoomState(bool isActive);
-        Task<ResponseDto<AvailableRoom>> searchAvailableRooms(DateTime startDate, DateTime endDate, int quota, long idCity);
+        Task<ResponseDto<bool>> UpdateRoomState(bool isActive,long idRoom);
+        Task<ResponseDto<AvailableRoom>> searchAvailableRooms(int quota, long idCity);
 
 
     }

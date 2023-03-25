@@ -15,7 +15,7 @@
         public long idHotel { get; set; }
 
         public string? name { get; set; }
-        public string? descripcion { get; set; }
+        public string? description { get; set; }
         public DateTime creationDate { get; set; }
         public string? image { get; set; }
         public string? location { get; set; }

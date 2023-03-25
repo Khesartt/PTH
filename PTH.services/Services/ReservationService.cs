@@ -29,7 +29,7 @@ namespace PTH.aplications.Services
                 }
                 if (!checkUser(createReservationDto.idUser))
                 {
-                    response.message = "The user doesn't exist.";
+                    response.message = "The user doesn't exist. or is inactive";
                     response.existError = true;
                     response.result = false;
                     return Task.FromResult(response);
@@ -274,7 +274,7 @@ namespace PTH.aplications.Services
         }
         private bool checkAmount(int amount,long idRoom)
         {
-            bool checkUser = reservationRepository.validateAmount(amount).Result;
+            bool checkUser = reservationRepository.validateAmount(amount,idRoom).Result;
             if (!checkUser)
             {
                 return false;
