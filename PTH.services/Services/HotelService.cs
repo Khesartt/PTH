@@ -59,7 +59,8 @@ namespace PTH.services.Services
                 hotelToCreate.services = createHotelDto.services;
                 hotelToCreate.checkIn = createHotelDto.checkIn;
                 hotelToCreate.checkOut = createHotelDto.checkOut;
-                hotelToCreate.creationDate = createHotelDto.creationDate;
+                hotelToCreate.creationDate = DateTime.Now;
+                hotelToCreate.active = true;
                 response = hotelRepository.CreateHotel(hotelToCreate).Result;
             }
             catch (Exception ex)

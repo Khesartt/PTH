@@ -2,11 +2,6 @@
 using PTH.infraestructure.EF.Context;
 using PTH.services.DTO_s;
 using PTH.services.Interfaces.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PTH.infraestructure.EF.Repositories
 {
@@ -22,7 +17,16 @@ namespace PTH.infraestructure.EF.Repositories
         public Task<ResponseDto<bool>> CreateUser(UserCreateDTO user)
         {
             ResponseDto<bool> response = new ResponseDto<bool>();
-            dbContext.Add(response);
+            User userToCreate = new User();
+            userToCreate.idRole=user.idRole;
+            userToCreate.userLogin = user.userLogin;
+            userToCreate.password = user.password;
+            userToCreate.email = user.email;
+            userToCreate.activo = true;
+            userToCreate.creationDate = DateTime.Now;
+            userToCreate.token = Guid.NewGuid();
+            userToCreate.tokenDate = DateTime.Now;
+            dbContext.Add(userToCreate);
             dbContext.SaveChanges();
             response.result = true;
             return Task.FromResult(response);

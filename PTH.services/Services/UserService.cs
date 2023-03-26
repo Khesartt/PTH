@@ -20,7 +20,7 @@ namespace PTH.aplications.Services
             }
             catch (Exception ex)
             {
-                response.message = "There are unhandled errors trying to create user";
+                response.message = "There are unhandled errors trying to create the user";
                 response.error = ex.Message;
                 response.existError = true;
                 response.result = false;

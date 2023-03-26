@@ -24,18 +24,9 @@ namespace PTH.infraestructure.EF.Configs
                    .HasForeignKey(e => e.idCity)
                    .HasConstraintName("FK_idHotelCity");
 
-            builder.Property(e => e.checkIn)
-                   .HasConversion(
-                                  e => e.ToString(),
-                                  e => TimeSpan.Parse(e))
-                   .HasColumnType("time");
-            builder.Property(e => e.checkOut)
-                   .HasConversion(
-                                  e => e.ToString(),
-                                  e => TimeSpan.Parse(e))
-                   .HasColumnType("time");
 
-
+            builder.Property(x => x.checkIn).HasColumnType("time");
+            builder.Property(x => x.checkOut).HasColumnType("time");
             builder.Property(x => x.name).HasColumnType("varchar(100)");
             builder.Property(x => x.description).HasColumnType("varchar(100)");
             builder.Property(x => x.image).HasColumnType("text");

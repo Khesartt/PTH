@@ -21,10 +21,10 @@ namespace PTH.services.DTO_s
 
     public class UserCreateDTO
     {
-        public string? UserLogin { get; set; }
-        public string? Password { get; set; }
-        public string? Email { get; set; }
-        public long IdRole { get; set; }
+        public string? userLogin { get; set; }
+        public string? password { get; set; }
+        public string? email { get; set; }
+        public long idRole { get; set; }
     }
 
     public class UserUpdateDTO

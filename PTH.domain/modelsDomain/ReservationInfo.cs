@@ -6,7 +6,6 @@
         public long idReservation { get; set; }
         public long idGender { get; set; }
         public long idTypeDocument { get; set; }
-
         public string? names { get; set; }
         public string? lastNames { get; set; }
         public string? identification { get; set; }

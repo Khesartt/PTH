@@ -17,7 +17,6 @@ namespace PTH.services.DTO_s
         public string? services { get; set; }
         public TimeSpan checkIn { get; set; }
         public TimeSpan checkOut { get; set; }
-        public DateTime creationDate { get; set; }
     }
 
     public class HotelUpdateDTO

@@ -10,7 +10,6 @@
         public long id { get; set; }
         public long idRoom { get; set; }
         public long idUser { get; set; }
-
         public bool active { get; set; }
         public DateTime creationDate { get; set; }
         public DateTime inDate { get; set; }
