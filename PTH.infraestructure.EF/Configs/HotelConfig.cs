@@ -37,7 +37,7 @@ namespace PTH.infraestructure.EF.Configs
 
 
             builder.Property(x => x.name).HasColumnType("varchar(100)");
-            builder.Property(x => x.descripcion).HasColumnType("varchar(100)");
+            builder.Property(x => x.description).HasColumnType("varchar(100)");
             builder.Property(x => x.image).HasColumnType("text");
             builder.Property(x => x.address).HasColumnType("varchar(100)");
             builder.Property(x => x.services).HasColumnType("varchar(100)");

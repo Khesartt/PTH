@@ -7,14 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\**" />
-    <Content Remove="Controllers\**" />
-    <EmbeddedResource Remove="Controllers\**" />
-    <None Remove="Controllers\**" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <ProjectReference Include="..\PTH.domain\PTH.domain.csproj" />
+    <ProjectReference Include="..\PTH.infraestructure.EF\PTH.infraestructure.EF.csproj" />
+    <ProjectReference Include="..\PTH.services\PTH.aplications.csproj" />
   </ItemGroup>
 
 </Project>

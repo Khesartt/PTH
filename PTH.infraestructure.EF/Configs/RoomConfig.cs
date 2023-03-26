@@ -28,7 +28,7 @@ namespace PTH.infraestructure.EF.Configs
             builder.Property(e => e.taxes).HasColumnType("decimal(20, 2)");
 
             builder.Property(e => e.name).HasColumnType("varchar(100)");
-            builder.Property(e => e.descripcion).HasColumnType("varchar(500)");
+            builder.Property(e => e.description).HasColumnType("varchar(500)");
             builder.Property(e => e.creationDate).HasColumnType("datetime");
             builder.Property(e => e.location).HasColumnType("varchar(200)");
             builder.Property(e => e.quota).HasColumnType("int");

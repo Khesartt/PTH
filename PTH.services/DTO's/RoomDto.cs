@@ -20,7 +20,7 @@ namespace PTH.services.DTO_s
     public class RoomCreateDTO
     {
         public string? name { get; set; }
-        public string? descripcion { get; set; }
+        public string? description { get; set; }
         public string? image { get; set; }
         public string? location { get; set; }
         public long idRoomType { get; set; }

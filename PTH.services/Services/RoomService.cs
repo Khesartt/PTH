@@ -41,7 +41,7 @@ namespace PTH.aplications.Services
                 #region createRoom
                 Room room = new Room();
                 room.name = createRoomDto.name;
-                room.descripcion = createRoomDto.descripcion;
+                room.description = createRoomDto.description;
                 room.image = createRoomDto.image;
                 room.location = createRoomDto.location;
                 room.idRoomType = createRoomDto.idRoomType;

@@ -2,11 +2,10 @@
 using PTH.infraestructure.EF.Context;
 using PTH.services.DTO_s;
 using PTH.services.Interfaces.Repositories;
-using System.Runtime.InteropServices;
 
 namespace PTH.infraestructure.EF.Repositories
 {
-    internal class RoomRepository : IRoomRepository
+    public class RoomRepository : IRoomRepository
     {
         private ApiContext dbContext;
 

@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PTH.domain\PTH.domain.csproj" />
-    <ProjectReference Include="..\PTH.infraestructure.api\PTH.infraestructure.api.csproj" />
     <ProjectReference Include="..\PTH.services\PTH.aplications.csproj" />
   </ItemGroup>
 

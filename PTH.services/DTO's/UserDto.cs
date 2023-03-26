@@ -8,13 +8,15 @@ namespace PTH.services.DTO_s
 {
     public class UserDTO
     {
-        public long Id { get; set; }
-        public string? UserLogin { get; set; }
-        public string? Password { get; set; }
-        public string? Email { get; set; }
-        public long IdRole { get; set; }
-        public bool Activo { get; set; }
-        public DateTime CreationDate { get; set; }
+        public long id { get; set; }
+        public string? userLogin { get; set; }
+        public string? password { get; set; }
+        public string? email { get; set; }
+        public long idRole { get; set; }
+        public bool activo { get; set; }
+        public Guid token { get; set; }
+        public DateTime tokenDate { get; set; }
+
     }
 
     public class UserCreateDTO
@@ -28,10 +30,10 @@ namespace PTH.services.DTO_s
     public class UserUpdateDTO
     {
         public long id { get; set; }
-        public string? UserLogin { get; set; }
-        public string? Password { get; set; }
-        public string? Email { get; set; }
-        public bool? Activo { get; set; }
+        public string? userLogin { get; set; }
+        public string? password { get; set; }
+        public string? email { get; set; }
+        public bool activo { get; set; }
     }
 
 }
