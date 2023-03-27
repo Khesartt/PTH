@@ -17,12 +17,12 @@ namespace PTH.aplications.Services
         public Task<ResponseDto<bool>> CreateRoom(RoomCreateDTO createRoomDto)
         {
             ResponseDto<bool> response = new ResponseDto<bool>();
-            //check city and user
+            //check hotel
             try
             {
                 if (!checkHotel(createRoomDto.idHotel))
                 {
-                    response.message = "The hotel doesn't exist.";
+                    response.message = "The hotel doesn't exist or is inactive";
                     response.error = "no Exception Error";
                     response.existError = true;
                     response.result = false;

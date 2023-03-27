@@ -25,7 +25,7 @@ namespace PTH.infraestructure.api.Controllers
             return servicio.CreateRoom(createRoomDto).Result;
         }
         [HttpDelete("DeleteRoom")]
-        public ResponseDto<bool> DeleteRoom([FromBody] long idRoom)
+        public ResponseDto<bool> DeleteRoom(long idRoom)
         {
             var servicio = CrearServicio();
             return servicio.DeleteRoom(idRoom).Result;
@@ -44,7 +44,7 @@ namespace PTH.infraestructure.api.Controllers
         }
 
         [HttpGet("searchAvailableRooms")]
-        public ResponseDto<AvailableRoom> searchAvailableRooms([FromBody] int quota, long idCity)
+        public ResponseDto<AvailableRoom> searchAvailableRooms(int quota, long idCity)
         {
             var servicio = CrearServicio();
             return servicio.searchAvailableRooms(quota, idCity).Result;
@@ -59,7 +59,7 @@ namespace PTH.infraestructure.api.Controllers
         }
 
         [HttpPost("UpdateRoomState")]
-        public ResponseDto<bool> UpdateRoomState([FromBody] bool isActive, long idRoom)
+        public ResponseDto<bool> UpdateRoomState(bool isActive, long idRoom)
         {
             var servicio = CrearServicio();
             return servicio.UpdateRoomState(isActive, idRoom).Result;

@@ -204,6 +204,27 @@ namespace PTH.infraestructure.EF.Repositories
             return Task.FromResult(check);
         }
 
+        public Task<bool> updateRoom(long idRoom)
+        {
+            bool check = false;
+
+            Room? room = dbContext.rooms.Where(x => x.id == idRoom).FirstOrDefault();
+            if (room != null)
+            {
+                room.occupied = true;
+                dbContext.Entry(room).Property(p => p.occupied).IsModified = true;
+                dbContext.SaveChanges();
+                check = true;
+
+            }
+            else
+            {
+                check = false;
+            }
+            return Task.FromResult(check);
+
+        }
+
         public Task<bool> validateAmount(long amount, long idRoom)
         {
             int amountTocompare = dbContext.rooms.Where(x => x.id == idRoom).Select(x => x.quota).FirstOrDefault();

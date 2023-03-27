@@ -78,8 +78,11 @@ namespace PTH.infraestructure.EF.Repositories
                 availableRoom.services = item.services;
                 availableRoom.checkIn = item.checkIn;
                 availableRoom.checkOut = item.checkOut;
-                availableRoom.roomsAvailable = dbContext.rooms.Where(x => x.idHotel == item.id && quota <= x.quota && x.occupied == false).ToList();
-                availableRooms.Add(availableRoom);
+                availableRoom.roomsAvailable = dbContext.rooms.Where(x => x.idHotel == item.id && quota <= x.quota && x.occupied == false && x.active == true).ToList();
+                if (availableRoom.roomsAvailable.Count() > 0)
+                {
+                    availableRooms.Add(availableRoom);
+                }
             }
             response.results = availableRooms;
             return Task.FromResult(response);
@@ -128,6 +131,7 @@ namespace PTH.infraestructure.EF.Repositories
                 roomToUpdate.active = isActive;
                 dbContext.Entry(roomToUpdate).Property(p => p.active).IsModified = true;
                 dbContext.SaveChanges();
+                response.result = true;
             }
             else
             {

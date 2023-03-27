@@ -46,7 +46,7 @@ namespace PTH.infraestructure.EF.Repositories
         public Task<ResponseDto<Hotel>> GetAllHotels()
         {
             ResponseDto<Hotel> response = new ResponseDto<Hotel>();
-            List<Hotel> hotels = dbContext.hotels.ToList();
+            List<Hotel> hotels = dbContext.hotels.Where(x => x.active == true).ToList();
             response.results = hotels;
             return Task.FromResult(response);
         }
@@ -113,6 +113,7 @@ namespace PTH.infraestructure.EF.Repositories
                 hotelToUpdate.active = isActive;
                 dbContext.Entry(hotelToUpdate).Property(p => p.active).IsModified = true;
                 dbContext.SaveChanges();
+                response.result = true;
             }
             else
             {

@@ -26,7 +26,7 @@ namespace PTH.infraestructure.api.Controllers
             return servicio.CreateUser(userCreateDTO).Result;
         }
         [HttpDelete("DeleteRoom")]
-        public ResponseDto<bool> DeleteRoom([FromBody] long idUser)
+        public ResponseDto<bool> DeleteRoom(long idUser)
         {
             var servicio = CrearServicio();
             return servicio.DeleteRoom(idUser).Result;

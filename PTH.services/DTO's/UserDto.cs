@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PTH.services.DTO_s
+﻿namespace PTH.services.DTO_s
 {
     public class UserDTO
     {
@@ -16,7 +10,6 @@ namespace PTH.services.DTO_s
         public bool activo { get; set; }
         public Guid token { get; set; }
         public DateTime tokenDate { get; set; }
-
     }
 
     public class UserCreateDTO

@@ -27,7 +27,7 @@ namespace PTH.infraestructure.api.Controllers
             return servicio.CreateHotel(createHotelDto).Result;
         }
         [HttpDelete("DeleteHotel")]
-        public ResponseDto<bool> DeleteHotel([FromBody] long idHotel)
+        public ResponseDto<bool> DeleteHotel(long idHotel)
         {
             var servicio = CrearServicio();
             return servicio.DeleteHotel(idHotel).Result;
@@ -53,7 +53,7 @@ namespace PTH.infraestructure.api.Controllers
         }
 
         [HttpPost("UpdateHotelState")]
-        public ResponseDto<bool> UpdateHotelState([FromBody] bool isActive, long idHotel)
+        public ResponseDto<bool> UpdateHotelState(bool isActive, long idHotel)
         {
             var servicio = CrearServicio();
             return servicio.UpdateHotelState(isActive, idHotel).Result;

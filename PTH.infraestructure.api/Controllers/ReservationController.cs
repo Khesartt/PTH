@@ -27,7 +27,7 @@ namespace PTH.infraestructure.api.Controllers
             return servicio.CreateReservation(createReservationDto).Result;
         }
         [HttpDelete("DeleteReservation")]
-        public ResponseDto<bool> DeleteReservation([FromBody] long idReservation)
+        public ResponseDto<bool> DeleteReservation(long idReservation)
         {
             var servicio = CrearServicio();
             return servicio.DeleteReservation(idReservation).Result;
@@ -57,7 +57,7 @@ namespace PTH.infraestructure.api.Controllers
             return servicio.GetReservationById(idReservation).Result;
         }
         [HttpPost("UpdateReservationState")]
-        public ResponseDto<bool> UpdateReservationState([FromBody] bool isActive, long idReservation)
+        public ResponseDto<bool> UpdateReservationState(bool isActive, long idReservation)
         {
             var servicio = CrearServicio();
             return servicio.UpdateReservationState(isActive, idReservation).Result;

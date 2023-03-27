@@ -18,7 +18,7 @@ namespace PTH.infraestructure.EF.Repositories
         {
             ResponseDto<bool> response = new ResponseDto<bool>();
             User userToCreate = new User();
-            userToCreate.idRole=user.idRole;
+            userToCreate.idRole = user.idRole;
             userToCreate.userLogin = user.userLogin;
             userToCreate.password = user.password;
             userToCreate.email = user.email;
@@ -94,6 +94,10 @@ namespace PTH.infraestructure.EF.Repositories
                 userToUpdate.password = string.IsNullOrEmpty(user.password) ? userToUpdate.password : user.password;
                 userToUpdate.email = string.IsNullOrEmpty(user.email) ? userToUpdate.email : user.email;
                 userToUpdate.activo = string.IsNullOrEmpty(user.activo.ToString()) ? userToUpdate.activo : user.activo;
+
+                dbContext.Update(userToUpdate);
+                dbContext.SaveChanges();
+                response.result = true;
             }
             else
             {

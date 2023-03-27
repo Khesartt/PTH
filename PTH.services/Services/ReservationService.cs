@@ -20,7 +20,7 @@ namespace PTH.aplications.Services
             #region ValidateFields
             try
             {
-                if (!checkRoom(createReservationDto.idRoom))
+                if (checkRoom(createReservationDto.idRoom))
                 {
                     response.message = "The room doesn't exist or it has already been taken";
                     response.existError = true;
@@ -100,7 +100,10 @@ namespace PTH.aplications.Services
                 try
                 {
                     bool resposeReservationInfo = reservationRepository.CreateReservationInfo(reservationsInfo).Result;
-                    if (resposeReservationInfo) response.result = true;
+                    if (resposeReservationInfo) {
+                        reservationRepository.updateRoom(createReservationDto.idRoom);
+                        response.result = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -266,11 +269,7 @@ namespace PTH.aplications.Services
         private bool checkRoom(long idRoom)
         {
             bool checkUser = reservationRepository.validateRoom(idRoom).Result;
-            if (!checkUser)
-            {
-                return false;
-            }
-            return true;
+            return checkUser;
         }
         private bool checkAmount(int amount,long idRoom)
         {
