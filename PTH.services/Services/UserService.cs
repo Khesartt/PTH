@@ -1,7 +1,8 @@
 ﻿using PTH.services.DTO_s;
 using PTH.services.Interfaces;
 using PTH.services.Interfaces.Repositories;
-
+using System.Net.Mail;
+using System.Net;
 namespace PTH.aplications.Services
 {
     public class UserService : IUserService
@@ -17,6 +18,7 @@ namespace PTH.aplications.Services
             try
             {
                 response = userRepository.CreateUser(userCreateDTO).Result;
+                sendEmail(userCreateDTO.email);
             }
             catch (Exception ex)
             {
@@ -77,6 +79,28 @@ namespace PTH.aplications.Services
                 response.result = false;
             }
             return Task.FromResult(response);
+        }
+
+        private void sendEmail(string correoToSend)
+        {
+
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress("cuentagenericacesar@gmail.com");
+                mail.To.Add(correoToSend);
+                mail.Subject = "Aplicacion de Hotel";
+                mail.Body = "<h1>tu Usuario ha sido Creado con exito!</h1>";
+                mail.IsBodyHtml = true;
+                //mail.Attachments.Add(new Attachment("C:\\file.zip"));
+
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.Credentials = new NetworkCredential("cuentagenericacesar@gmail.com", "aexvvihnzjmcngoc");
+                    smtp.EnableSsl = true;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.Send(mail);
+                }
+            }
         }
     }
 }

@@ -3,6 +3,9 @@ using PTH.domain.modelsDomain;
 using PTH.services.DTO_s;
 using PTH.services.Interfaces;
 using PTH.services.Interfaces.Repositories;
+using System.Net.Mail;
+using System.Net;
+
 
 namespace PTH.aplications.Services
 {
@@ -34,7 +37,7 @@ namespace PTH.aplications.Services
                     response.result = false;
                     return Task.FromResult(response);
                 }
-                if (!checkAmount(createReservationDto.amount,createReservationDto.idRoom))
+                if (!checkAmount(createReservationDto.amount, createReservationDto.idRoom))
                 {
                     response.message = "The number of people is greater than those allowed for the room";
                     response.existError = true;
@@ -100,8 +103,11 @@ namespace PTH.aplications.Services
                 try
                 {
                     bool resposeReservationInfo = reservationRepository.CreateReservationInfo(reservationsInfo).Result;
-                    if (resposeReservationInfo) {
+                    if (resposeReservationInfo)
+                    {
                         reservationRepository.updateRoom(createReservationDto.idRoom);
+                        string email = reservationRepository.getEmailToUser(createReservationDto.idUser).Result;
+                        sendEmail(email);
                         response.result = true;
                     }
                 }
@@ -271,14 +277,35 @@ namespace PTH.aplications.Services
             bool checkUser = reservationRepository.validateRoom(idRoom).Result;
             return checkUser;
         }
-        private bool checkAmount(int amount,long idRoom)
+        private bool checkAmount(int amount, long idRoom)
         {
-            bool checkUser = reservationRepository.validateAmount(amount,idRoom).Result;
+            bool checkUser = reservationRepository.validateAmount(amount, idRoom).Result;
             if (!checkUser)
             {
                 return false;
             }
             return true;
+        }
+
+        private void sendEmail(string correoToSend)
+        {
+
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress("cuentagenericacesar@gmail.com");
+                mail.To.Add(correoToSend);
+                mail.Subject = "Aplicacion de Hotel";
+                mail.Body = "<h1>Tu Reserva ha sido Creada con exito</h1>";
+                mail.IsBodyHtml = true;
+
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.Credentials = new NetworkCredential("cuentagenericacesar@gmail.com", "aexvvihnzjmcngoc");
+                    smtp.EnableSsl = true;
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.Send(mail);
+                }
+            }
         }
     }
 }

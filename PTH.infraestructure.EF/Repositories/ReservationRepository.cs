@@ -134,7 +134,6 @@ namespace PTH.infraestructure.EF.Repositories
             response.results = reservationsDTO;
             return Task.FromResult(response);
         }
-
         public Task<ResponseDto<ReservationDTO>> GetReservationById(long idReservation)
         {
             ResponseDto<ReservationDTO> response = new();
@@ -252,6 +251,11 @@ namespace PTH.infraestructure.EF.Repositories
         {
             bool isActive = dbContext.users.Where(x => x.id == idUser).Select(x => x.activo).FirstOrDefault();
             return Task.FromResult(isActive);
+        }
+        public Task<string> getEmailToUser(long idUser)
+        {
+            string emailUser = dbContext.users.Where(x => x.id == idUser).Select(x => x.email).FirstOrDefault();
+            return Task.FromResult(emailUser);
         }
     }
 }

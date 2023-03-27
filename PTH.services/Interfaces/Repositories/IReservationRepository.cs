@@ -20,5 +20,7 @@ namespace PTH.services.Interfaces.Repositories
         Task<bool> validateAmount(long amount, long idRoom);
         Task<bool> validateReservation(long idReservation);
         Task<bool> updateRoom(long idRoom);
+
+        Task<string> getEmailToUser(long idUser);
     }
 }
